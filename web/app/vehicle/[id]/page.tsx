@@ -4,7 +4,9 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { MapPin, Plus, User, Users, Route, Car, XCircle, UserPlus } from 'lucide-react'
+import { MapPin, Plus, User, Users, Route, Car, XCircle, UserPlus, AlertTriangle } from 'lucide-react'
+import { Textarea } from "@/components/ui/textarea"
+
 
 // Simulated vehicle data - would typically come from an API
 const vehicleData = {
@@ -25,6 +27,9 @@ export default function VehicleDetailsPage() {
   const [otherDestination, setOtherDestination] = useState('')
   const [destinations, setDestinations] = useState<{name: string, isOther: boolean}[]>([])
   const [isAddingOther, setIsAddingOther] = useState(false)
+
+  const [complaintType, setComplaintType] = useState('')
+  const [complaintDescription, setComplaintDescription] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,6 +62,16 @@ export default function VehicleDetailsPage() {
 
   const removeDestination = (indexToRemove: number) => {
     setDestinations(destinations.filter((_, index) => index !== indexToRemove))
+  }  
+  
+  const handleComplaintSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (complaintType && complaintDescription) {
+      // TODO: Implement actual complaint submission logic
+      console.log('Complaint filed:', { type: complaintType, description: complaintDescription })
+      setComplaintType('')
+      setComplaintDescription('')
+    }
   }
 
   return (
@@ -180,6 +195,50 @@ export default function VehicleDetailsPage() {
             ) : (
               <p className="text-gray-500 text-sm">No destinations added yet.</p>
             )}
+          </div>
+
+          {/* Complaint Section */}
+          <div className="border-t pt-4">
+            <form onSubmit={handleComplaintSubmit} className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <AlertTriangle className="w-5 h-5 text-red-600" />
+                <h3 className="text-sm font-semibold text-gray-700">File a Complaint</h3>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Complaint Type
+                </label>
+                <select
+                  value={complaintType}
+                  onChange={(e) => setComplaintType(e.target.value)}
+                  className="w-full p-2 border rounded text-sm"
+                >
+                  <option value="">Select Complaint Type</option>
+                  <option value="driver">Driver Behavior</option>
+                  <option value="vehicle">Vehicle Condition</option>
+                  <option value="route">Route Issue</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Complaint Description
+                </label>
+                <Textarea
+                  value={complaintDescription}
+                  onChange={(e) => setComplaintDescription(e.target.value)}
+                  placeholder="Provide details about your complaint"
+                  className="w-full"
+                  rows={3}
+                />
+              </div>
+
+              <Button type="submit" variant="destructive" className="w-full">
+                Submit Complaint
+              </Button>
+            </form>
           </div>
         </CardContent>
       </Card>
