@@ -206,7 +206,7 @@ export default function Home() {
                     <MapPin className="mx-auto h-16 w-16 text-blue-600 dark:text-blue-400 relative" />
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Select Vehicle</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Enter your vehicle's plate number via our web or mobile app</p>
+                  <p className="text-gray-600 dark:text-gray-300">Enter your vehicle plate number via our web or mobile app</p>
                 </div>
               </div>
 
