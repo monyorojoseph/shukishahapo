@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { ForwardRefExoticComponent, RefAttributes, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import {  ArrowRight, MapPin, Wallet, Bell, Smartphone, Wifi,  Server,  Speaker } from 'lucide-react'
+import {  ArrowRight, MapPin, Wallet, Bell, Wifi,  Server,  Speaker, LucideProps } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
@@ -20,7 +20,8 @@ export default function Home() {
   }
 
   const TechFeatureCard = ({ icon: Icon, title, description }:
-    { icon: any; title: string; description: string}
+    { icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; 
+      title: string; description: string}
   ) => (
     <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
       <Icon className="h-12 w-12 mb-4 text-primary" />
