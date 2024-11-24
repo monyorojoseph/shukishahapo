@@ -1,10 +1,10 @@
 'use client'
 
-import { ForwardRefExoticComponent, RefAttributes, useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { ArrowRight, MapPin, Wallet, Bell, Wifi, Server, Speaker, LucideProps } from 'lucide-react'
+import { ArrowRight, MapPin, Wallet, Bell, Wifi, Server, Speaker, LineChart, MessageSquare, CreditCard, LucideIcon, Calendar, Download, PieChart, BarChart } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
@@ -26,17 +26,6 @@ export default function Home() {
     router.push(`/vehicle/${vehiclePlate}`)
     setIsDialogOpen(false)
   }
-
-  const TechFeatureCard = ({ icon: Icon, title, description }:
-    { icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; 
-      title: string; description: string}
-  ) => (
-    <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-      <Icon className="h-12 w-12 mb-4 text-primary" />
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-500 dark:text-gray-400">{description}</p>
-    </div>
-  )
 
   return (
     <div className="relative bg-gray-50 dark:bg-gray-900">
@@ -61,6 +50,7 @@ export default function Home() {
       </header>
 
       <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory">
+        
         <section id="hero" 
           className="w-full h-screen snap-start bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 flex items-center relative overflow-hidden">
           {/* Animated background elements */}
@@ -284,38 +274,173 @@ export default function Home() {
             </div>
           </div>
         </section>
+
         <section id="tech-innovation" 
-          className="w-full h-screen snap-start bg-gray-100 dark:bg-gray-900 flex items-center">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">Technical Innovation</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          className="w-full min-h-screen snap-start bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -left-1/4 -top-1/4 w-1/2 h-1/2 bg-blue-100/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+            <div className="absolute -right-1/4 -bottom-1/4 w-1/2 h-1/2 bg-purple-100/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 relative z-10 py-16">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center rounded-full px-6 py-2 bg-blue-50 dark:bg-gray-800 border border-blue-200 dark:border-gray-700 mb-6">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                  Cutting-Edge Technology
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                Technical Innovation
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Experience the future of public transport with our advanced tracking and payment solutions
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               <TechFeatureCard 
-                icon={Wifi} 
-                title="Zero Data Charges" 
-                description="Connect to vehicles wirelessly without using mobile data" 
+                icon={LineChart}
+                title="Smart Trip Tracking" 
+                description="Monitor your commute expenses in real-time and get detailed insights into your travel patterns and costs"
+                gradient="bg-blue-100/50 dark:bg-blue-900/50"
               />
               <TechFeatureCard 
-                icon={Server} 
-                title="Embedded Vehicle Devices" 
-                description="Each vehicle has a dedicated communication system" 
+                icon={Bell}
+                title="Destination Alerts" 
+                description="Automatically notify drivers of your stop and get timely reminders as you approach your destination"
+                gradient="bg-purple-100/50 dark:bg-purple-900/50"
               />
               <TechFeatureCard 
-                icon={Wallet} 
-                title="Integrated Wallet" 
-                description="Easily top up and track commuting expenses" 
+                icon={Wallet}
+                title="Smart Wallet" 
+                description="Seamlessly manage your transport expenses with our integrated digital wallet system"
+                gradient="bg-indigo-100/50 dark:bg-indigo-900/50"
               />
+            </div>
+
+            {/* Additional Features */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-blue-50 dark:bg-gray-800 rounded-xl p-6 flex items-center space-x-4">
+                <div className="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-lg">
+                  <Wifi className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">Offline Capable</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Works without mobile data</p>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 dark:bg-gray-800 rounded-xl p-6 flex items-center space-x-4">
+                <div className="bg-purple-100 dark:bg-purple-900/50 p-3 rounded-lg">
+                  <MessageSquare className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">Driver Communication</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Direct stop notifications</p>
+                </div>
+              </div>
+
+              <div className="bg-pink-50 dark:bg-gray-800 rounded-xl p-6 flex items-center space-x-4">
+                <div className="bg-pink-100 dark:bg-pink-900/50 p-3 rounded-lg">
+                  <CreditCard className="h-6 w-6 text-pink-600 dark:text-pink-400" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">Multiple Payment Options</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Card, mobile money & more</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         <section id="expense-tracking" 
-          className="w-full h-screen snap-start bg-white dark:bg-gray-800 flex items-center">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold mb-6">Expense Tracking Made Simple</h2>
-            <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Monitor your commuting costs with detailed weekly, monthly, and annual reports. Manage your transportation budget effortlessly.
-            </p>
-            <Button size="lg">Learn More</Button>
+          className="w-full min-h-screen snap-start bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -left-1/4 -top-1/4 w-1/2 h-1/2 bg-blue-100/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+            <div className="absolute -right-1/4 -bottom-1/4 w-1/2 h-1/2 bg-purple-100/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 relative z-10 py-16">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center rounded-full px-6 py-2 bg-blue-50 dark:bg-gray-800 border border-blue-200 dark:border-gray-700 mb-6">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                  Smart Finance Management
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                Expense Tracking Made Simple
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">
+                Monitor your commuting costs with detailed weekly, monthly, and annual reports. Manage your transportation budget effortlessly.
+              </p>
+            </div>
+
+            {/* Expense Cards Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              <ExpenseCard 
+                icon={Wallet}
+                title="Monthly Expenses"
+                value="Ksh 2,450"
+                trend="+12% vs last month"
+                trendUp={true}
+              />
+              <ExpenseCard 
+                icon={BarChart}
+                title="Weekly Average"
+                value="Ksh 560"
+                trend="-8% vs last week"
+                trendUp={false}
+              />
+              <ExpenseCard 
+                icon={Calendar}
+                title="Daily Average"
+                value="Ksh 80"
+                trend="+5% vs yesterday"
+                trendUp={true}
+              />
+              <ExpenseCard 
+                icon={PieChart}
+                title="Budget Used"
+                value="65%"
+                trend="On track"
+                trendUp={true}
+              />
+            </div>
+
+            {/* Feature Grid */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl border border-gray-100 dark:border-gray-600">
+                <LineChart className="h-12 w-12 text-blue-600 dark:text-blue-400 mb-6" />
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Detailed Analytics</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Get comprehensive insights into your travel spending patterns with beautiful visualizations
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl border border-gray-100 dark:border-gray-600">
+                <Calendar className="h-12 w-12 text-purple-600 dark:text-purple-400 mb-6" />
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Custom Reports</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Generate personalized expense reports for any time period with just a few clicks
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl border border-gray-100 dark:border-gray-600">
+                <Download className="h-12 w-12 text-pink-600 dark:text-pink-400 mb-6" />
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Export Options</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Download your expense data in multiple formats for accounting and reimbursement
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition-colors duration-200">
+                Explore Features
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -326,7 +451,52 @@ export default function Home() {
             </p>
           </div>
         </footer>
+
       </main>
     </div>
   )
 }
+
+interface TechFeatureCardProps {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  gradient: string;
+}
+
+interface ExpenseCardProps {
+  icon: LucideIcon;
+  title: string;
+  value: string;
+  trend: string;
+  trendUp: boolean;
+}
+
+const TechFeatureCard: React.FC<TechFeatureCardProps> = ({ icon: Icon, title, description, gradient }) => (
+  <div className="relative group">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+      <div className="text-center mb-6 relative">
+        <div className={`absolute inset-0 ${gradient} rounded-full blur-2xl transform group-hover:scale-110 transition-transform duration-300`}></div>
+        <Icon className="mx-auto h-16 w-16 relative" style={{ color: 'currentColor' }} />
+      </div>
+      <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white text-center">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 text-center">{description}</p>
+    </div>
+  </div>
+);
+
+
+const ExpenseCard: React.FC<ExpenseCardProps> = ({ icon: Icon, title, value, trend, trendUp }) => (
+  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+    <div className="flex items-center justify-between mb-4">
+      <div className="bg-blue-50 dark:bg-gray-700 p-3 rounded-lg">
+        <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+      </div>
+      <span className={`text-sm font-medium ${trendUp ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+        {trend}
+      </span>
+    </div>
+    <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</h4>
+    <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">{value}</p>
+  </div>
+);
