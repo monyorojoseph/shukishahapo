@@ -42,3 +42,21 @@ jobs:
                 docker build -t shukishahapo-web -f docker/NextJs/Dockerfile web 
                 docker tag shukishahapo-web:latest monyorojoseph/shukishahapo-web:latest
                 docker push monyorojoseph/shukishahapo-web:latest
+    
+    deploy:
+      runs-on: ubuntu-lates
+      needs: build
+      steps:
+          - name: Deploy Web App
+            uses: D3rHase/ssh-command-action@latest
+            with:
+              host: ${{ secrets.HOST }}
+              port: ${{ secrets.PORT }}
+              user: ${{ secrets.USER }}
+              private_key: ${{ secrets.PRIVATE_KEY }}
+              command: |
+                cd shukishahapo/
+                docker compose pull
+                docker compose up --build -d
+
+
