@@ -55,8 +55,7 @@ jobs:
               user: ${{ secrets.USER }}
               private_key: ${{ secrets.PRIVATE_KEY }}
               command: |
-                cd shukishahapo/
-                docker compose pull
-                docker compose up --build -d
+                  "cd shukishahapo/ && docker compose pull && docker compose up --build -d"
+
 
 
